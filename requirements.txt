@@ -11,3 +11,4 @@ pymongo[srv]
 dnspython
 flask-bcrypt
 requests
+python-dotenv
