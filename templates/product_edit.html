@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-4">
+  </div>
+  <div class="col-4">
+    <div>
+      <hr>
+      <h3 class="pt-2 pb-2 text-center">상품 수정</h3>
+      <hr>
+    </div>
+    <form action="/products/{{product['_id']}}/update" method="post" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="name" class="form-label">product name</label>
+        <input name="name" value="{{product['name']}}" type="text" class="form-control" id="name">
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">product price</label>
+        <input name="price" value="{{product['price']}}" type="text" class="form-control" id="price">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">product description</label>
+        <textarea name="description" type="text" class="form-control" id="description">{{product['description']}}</textarea>
+      </div>
+      <div class="mb-3">
+        <label for="thumbnail_img" class="form-label">product thumbnail_img</label>
+        <input name="thumbnail_img" type="file" class="form-control" id="thumbnail_img">
+      </div>
+      <div class="mb-3">
+        <label for="detail_img" class="form-label">product detail_img</label>
+        <input name="detail_img" type="file" class="form-control" id="detail_img">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Regist</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
