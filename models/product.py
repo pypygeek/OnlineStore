@@ -1,5 +1,6 @@
 from .mongodb import conn_mongodb
 from datetime import datetime
+from bson import ObjectId
 
 class Product():
     @staticmethod
@@ -22,3 +23,8 @@ class Product():
         products = db.products.find({})
 
         return products
+
+    @staticmethod
+    def delete_one(id):
+        db = conn_mongodb()
+        db.products.delete_one({'_id':ObjectId(id)})

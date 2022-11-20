@@ -34,6 +34,12 @@ def get_products():
 
     return render_template('products.html', products=products)
 
+@product.route('/<product_id>/delete')
+def delete(product_id):
+    # 상품 삭제
+    Product.delete_one(product_id)
+    return "상품이 정상적으로 삭제되었습니다."
+
 def _upload_file(img_file):
     timestamp = str(datetime.now().timestamp())
     filename = timestamp + '_' + secure_filename(img_file.filename)
