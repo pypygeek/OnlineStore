@@ -2,7 +2,6 @@
 from flask import request, render_template
 from .blueprint import product
 
-# from models.mongodb import conn_mongodb
 from models.product import Product
 
 from datetime import datetime
@@ -25,21 +24,15 @@ def regist():
     detail_img_url = _upload_file(detail_img)
     Product.insert_one(form_data, thumbnail_img_url, detail_img_url)
 
-    # # 전달받은 상품 정보
-    # form_data = request.form
-    # name = form_data['name']
-    # price = form_data['price']
-    # description = form_data['description']
-
-    # # 저장 -> models/products
-    # db = conn_mongodb()
-    # db.products.insert_one({
-    #     'name': name,
-    #     'price': price,
-    #     'description': description
-    # })
     return "상품 등록 API 입니다."
 
+# 상품 리스트 조회 API
+@product.route('/list')
+def get_products():
+    # 상품 리스트 정보를 mongo db products 컬렉션에 있는 documents
+    products = Product.find()
+
+    return render_template('products.html', products=products)
 
 def _upload_file(img_file):
     timestamp = str(datetime.now().timestamp())
